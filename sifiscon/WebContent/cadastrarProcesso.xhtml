@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>.:: Sifiscon ::.</title>
+</h:head>
+    
+<h:body>
+	
+		<h:form>
+		<p:panel id="panel" header="Novo processo">
+		<!-- 	<p:panel id="panel" header="Novo processo"> -->
+				<h:messages />
+				<fieldset>
+					<legend>Busca por Cnpj</legend>
+					<p:outputLabel value="#{processoBean.mensagem}"/>
+					<h:panelGrid columns="3">
+						<p:outputLabel value="CNPJ:" for="cnpj" />
+						<p:inputMask id="cnpj" mask="99.999.999/9999-99" 
+						value="#{processoBean.processo.fornecedor.cnpj}" 
+						required="true" 
+						requiredMessage="CNPJ é obrigatório"
+						validatorMessage="CNPJ deve ter tamanho máximo de 18 caracteres">
+							<f:validateLength maximum="18" />
+						</p:inputMask>	
+						<p:commandButton value="Buscar" update="panel" action="#{processoBean.buscar}" />
+					</h:panelGrid>	
+							
+				</fieldset>
+				<fieldset>
+					<legend>Dados do processo</legend>
+					<h:panelGrid columns="6">
+						<p:outputLabel value="Razão Social:" for="razaoSocial" />
+						<p:inputText id="razaoSocial" value="#{processoBean.processo.fornecedor.razaoSocial}" disabled="true">	
+						 </p:inputText>	
+						
+						<p:outputLabel value="Inscrição Municipal" for="inscricaoMunicipal" />
+						<p:inputText id="inscricaoMunicipal" value="#{processoBean.processo.fornecedor.inscricaoMunicipal}" disabled="true">
+						</p:inputText>
+						
+						<p:outputLabel value="Logradouro" for="logradouro" />
+						<p:inputText id="logradouro" value="#{processoBean.processo.fornecedor.endereco.logradouro}" disabled="true">
+						</p:inputText>                                
+		                                
+		                <p:outputLabel value="Numero" for="numero" />
+						<p:inputText id="numero" value="#{processoBean.processo.fornecedor.endereco.numero}" disabled="true">
+						</p:inputText>     
+		                                
+		                <p:outputLabel value="Complemento" for="complemento" />
+						<p:inputText id="complemento" value="#{processoBean.processo.fornecedor.endereco.complemento}" disabled="true">
+						</p:inputText>     
+		                                
+		                <p:outputLabel value="Bairro" for="bairro" />
+						<p:inputText id="bairro" value="#{processoBean.processo.fornecedor.endereco.bairro}" disabled="true">
+						</p:inputText>  
+		                                
+		                <p:outputLabel value="CEP" for="cep" />
+						<p:inputText id="cep" value="#{processoBean.processo.fornecedor.endereco.cep}" disabled="true">
+						</p:inputText>
+		                                
+		                <p:outputLabel value="Municipio" for="municipio" />
+						<p:inputText id="municipio" value="#{processoBean.processo.fornecedor.endereco.municipio}" disabled="true">
+						</p:inputText>
+		                                
+		                <p:outputLabel value="Unidade Federativa" for="unidadeFederativa" />
+						<p:inputText id="unidadeFederativa" value="#{processoBean.processo.fornecedor.endereco.unidadeFederativa}" disabled="true">
+						</p:inputText>
+						
+						<p:outputLabel value="Relato da Fiscalização" for="relatoDaFiscalizacao" />
+						<p:inputText id="relatoDaFiscalizacao" value="#{processoBean.processo.relatoFiscalizacao}" 
+						requiredMessage="relatoFiscalizacao é obrigatório"
+						validatorMessage="relatoFiscalizacao deve ter tamanho máximo de 1000 caracteres"
+						required="{not empty param[save.clientId]}">
+							<f:validateLength maximum="1000" />
+						</p:inputText>
+						
+						<p:outputLabel value="Data do Relato" for="dataRelato" />
+						<p:calendar id="dataRelato" value="#{processoBean.processo.dataRelato}" required="{not empty param[save.clientId]}" requiredMessage="dataRelato é obrigatório"/>
+					
+						
+						<p:outputLabel value="Fsical Responsavel" for="fiscalResponsavel" />
+						<p:inputText id="fiscalResponsavel" value="#{processoBean.processo.fiscalResponsavel}"
+						required="{not empty param[save.clientId]}"
+						requiredMessage="fiscalResponsavel é obrigatório"
+						validatorMessage="fiscalResponsavel deve ter tamanho máximo de 100 caracteres">
+							<f:validateLength maximum="100" />
+						</p:inputText>
+			<!-- binding="#{save}"  required="{not empty param[save.clientId]}"-->
+						<h:commandButton value="Salvar Cadastro" biding="#{save}" action="#{processoBean.salvar}" />
+					</h:panelGrid>							
+				</fieldset>			
+	    
+    	</p:panel>
+    </h:form>		
+    <h:form>
+    	<p:commandButton value="Cancelar" action="#{processoBean.consultProcesso}" />
+    </h:form>	
+</h:body>
+</html>

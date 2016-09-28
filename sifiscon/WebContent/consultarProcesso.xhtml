@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"        
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>.:: Sifiscon ::.</title>
+</h:head>
+    
+<h:body>
+	<h1>Consultar Processo</h1>
+        <h:form>
+            <p:commandButton value="Novo Processo" id="NovoProcesso" action="#{processoBean.novoProcesso}" />
+            <p:commandButton value="Home" id="home" action="#{processoBean.home}" />
+        </h:form>
+
+	<!-- Lista de Fornecedores -->
+	<h:form>
+		<p:dataTable id="tabelaProcessos" value="#{processoBean.processos}" var="processo" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" paginator="true" rows="10" style="margin-bottom:20px">
+			<f:facet name="{Exporters}">
+				<h:commandLink>
+					<p:graphicImage value="resources/images/pdf.png" width="24" />
+					<p:dataExporter type="pdf" target="tabelaProcessos" fileName="processo" />
+				</h:commandLink>
+			</f:facet>
+			
+			<p:column>
+				<f:facet name="header">Numero do Processo</f:facet>
+				<h:outputText value="#{processo.numeroDoProcesso}" />
+			</p:column>
+	
+	        <p:column>
+				<f:facet name="header">Razão Social / CNPJ </f:facet>
+				<h:outputText value="#{processo.fornecedor.razaoSocial}" /> - <h:outputText value="#{processo.fornecedor.cnpj}" />
+			</p:column>
+	            
+	        <p:column>
+				<f:facet name="header">Fiscal Responsável</f:facet>
+				<h:outputText value="#{processo.fiscalResponsavel}" />
+			</p:column>
+	            
+			<p:column>
+				<f:facet name="header">Data do Relato</f:facet>
+				<h:outputText value="#{processo.dataRelato}">
+		          <f:convertDateTime pattern="dd/MM/yyyy"/>
+		        </h:outputText>
+			</p:column>
+	        
+			<p:column exportable="false">
+				<f:facet name="header">Editar</f:facet>
+				<p:commandButton value="Editar" action="#{processoBean.editarProcesso(processo)}" />
+			</p:column>    
+			
+			<p:column exportable="false">
+				<f:facet name="header">Excluir</f:facet>
+				<h:commandLink value="Excluir" action="#{processoBean.excluirProcesso(processo)}" />
+			</p:column>  
+		</p:dataTable>
+	</h:form>
+	
+</h:body>
+</html>

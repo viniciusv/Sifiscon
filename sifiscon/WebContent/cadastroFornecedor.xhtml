@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>.:: Sifiscon ::.</title>
+</h:head>
+    
+<h:body>
+	<h1>Novo Fornecedor</h1>
+	<h:form>
+		<h:messages />
+		<fieldset>
+			<legend>Dados do Fornecedor</legend>
+			<h:panelGrid columns="4">
+
+				<p:outputLabel value="CNPJ:" for="cnpj" />
+				<p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorBean.fornecedor.cnpj}"
+					required="true" requiredMessage="CNPJ é obrigatório"
+					validatorMessage="CNPJ deve ter tamanho máximo de 14 caracteres">
+					<f:validateLength maximum="18" />
+				</p:inputMask>
+
+				<p:outputLabel value="Razão Social:" for="razaoSocial" />
+				<p:inputText id="razaoSocial" value="#{fornecedorBean.fornecedor.razaoSocial}"
+					required="true" requiredMessage=" Razão Social é obrigatório"
+					validatorMessage="Razão Social deve ter tamanho máximo de 200 caracteres">
+					<f:validateLength maximum="200" />
+				</p:inputText>
+                                
+                <p:outputLabel value="Inscrição Municipal" for="inscricaoMunicipal" />
+				<p:inputMask id="inscricaoMunicipal" mask="9.999.999-9" value="#{fornecedorBean.fornecedor.inscricaoMunicipal}"
+					validatorMessage="inscriçaõ municipal deve ter tamanho máximo de 8 caracteres">
+					<f:validateLength maximum="11" />
+				</p:inputMask>
+                                
+                <p:outputLabel value="Receita Bruta" for="receitaBruta" />
+				<p:inputMask id="receitaBruta" mask="9,999,00" value="#{fornecedorBean.fornecedor.receitaBruta}"
+					required="true" requiredMessage="receita é obrigatório"
+					validatorMessage="receita deve ter tamanho máximo de 6 caracteres">
+					<f:validateLength maximum="8" />
+				</p:inputMask>
+			</h:panelGrid>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Endereço</legend>
+			<h:panelGrid columns="4">
+                <p:outputLabel value="Logradouro" for="logradouro" />
+				<p:inputText id="logradouro" value="#{fornecedorBean.fornecedor.endereco.logradouro}"
+					required="true" requiredMessage="Logradouro é obrigatório"
+					validatorMessage="CNPJ deve ter tamanho máximo de 100 caracteres">
+					<f:validateLength maximum="100" />
+				</p:inputText>                                
+                                
+                <p:outputLabel value="Numero" for="numero" />
+				<p:inputText id="numero" value="#{fornecedorBean.fornecedor.endereco.numero}"
+					required="true" requiredMessage="numero é obrigatório"
+					validatorMessage="numero deve ter tamanho máximo de 50 caracteres">
+					<f:validateLength maximum="50" />
+				</p:inputText>     
+                                
+                <p:outputLabel value="Complemento" for="complemento" />
+				<p:inputText id="complemento" value="#{fornecedorBean.fornecedor.endereco.complemento}"
+					required="true" requiredMessage="complemento é obrigatório"
+					validatorMessage="complemento deve ter tamanho máximo de 50 caracteres">
+					<f:validateLength maximum="50" />
+				</p:inputText>     
+                                
+                <p:outputLabel value="Bairro" for="bairro" />
+				<p:inputText id="bairro" value="#{fornecedorBean.fornecedor.endereco.bairro}"
+					required="true" requiredMessage="bairro é obrigatório"
+					validatorMessage="bairro deve ter tamanho máximo de 100 caracteres">
+					<f:validateLength maximum="100" />
+				</p:inputText>  
+                                
+                <p:outputLabel value="CEP" for="cep" />
+				<p:inputMask id="cep" mask="99999-999" value="#{fornecedorBean.fornecedor.endereco.cep}"
+					required="true" requiredMessage="cep é obrigatório"
+					validatorMessage="cep deve ter tamanho máximo de 8 caracteres">
+					<f:validateLength maximum="9" />
+				</p:inputMask>
+                                
+                <p:outputLabel value="Municipio" for="municipio" />
+				<p:inputText id="municipio" value="#{fornecedorBean.fornecedor.endereco.municipio}"
+					required="true" requiredMessage="municipio é obrigatório"
+					validatorMessage="municipio deve ter tamanho máximo de 200 caracteres">
+					<f:validateLength maximum="200" />
+				</p:inputText>
+                                
+                <p:outputLabel value="Unidade Federativa" for="unidadeFederativa" />
+				
+				<p:selectOneMenu id="unidadeFederativa" value="#{fornecedorBean.fornecedor.endereco.unidadeFederativa}" required="true" requiredMessage="uf é obrigatório"
+						validatorMessage="uf deve ter tamanho máximo de 2 caracteres">
+	                <f:selectItem itemLabel="Selecione..." itemValue="" noSelectionOption="true" />
+	                <f:selectItem itemLabel="Acre" itemValue="Acre" />
+	                <f:selectItem itemLabel="Alagoas" itemValue="Alagoas" />
+	                <f:selectItem itemLabel="Amapá" itemValue="Amapá" />
+	                <f:selectItem itemLabel="Amazonas" itemValue="Amazonas" />
+	                <f:selectItem itemLabel="Bahia" itemValue="Bahia" />
+	                <f:selectItem itemLabel="Ceará" itemValue="Ceará" />
+	                <f:selectItem itemLabel="Distrito Federal" itemValue="Distrito Federal" />
+	                <f:selectItem itemLabel="Espirito Santo" itemValue="Espirito Santo" />
+	                <f:selectItem itemLabel="Goiás" itemValue="Goiás" />
+	                <f:selectItem itemLabel="Maranhão" itemValue="Maranhão" />
+	                <f:selectItem itemLabel="Mato Grosso do Sul" itemValue="Mato Grosso do Sul" />
+	                <f:selectItem itemLabel="Mato Grosso" itemValue="Mato Grosso" />
+	                <f:selectItem itemLabel="Minas Gerais" itemValue="Minas Gerais" />
+	                <f:selectItem itemLabel="Pará" itemValue="Pará" />
+	                <f:selectItem itemLabel="Paraíba" itemValue="Paraíba" />
+	                <f:selectItem itemLabel="Paraná" itemValue="Paraná" />
+	                <f:selectItem itemLabel="Pernambuco" itemValue="Pernambuco" />
+	                <f:selectItem itemLabel="Piauí" itemValue="Piauí" />
+	                <f:selectItem itemLabel="Rio de Janeiro" itemValue="Rio de Janeiro" />
+	                <f:selectItem itemLabel="Rio Grande do Norte" itemValue="Rio Grande do Norte" />
+	            </p:selectOneMenu>
+	            <p:commandButton value="Salvar"  id="salvar" action="#{fornecedorBean.salvar}" />
+			</h:panelGrid>
+		</fieldset>		
+        
+        </h:form>
+        <h:form>
+        	<p:commandButton value="Cancelar"  id="cancelar" action="#{fornecedorBean.consultFornecedor}" />
+        </h:form>	
+</h:body>
+</html>
